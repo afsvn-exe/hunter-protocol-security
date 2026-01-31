@@ -1,0 +1,60 @@
+# Build artifacts
+*.o
+*.a
+*.so
+*.so.*
+*.dylib
+
+# Executables
+*.out
+*.exe
+/bin/
+/build/
+
+# Debug files
+*.dSYM/
+*.su
+*.idb
+*.pdb
+core
+core.*
+vgcore.*
+
+# Sanitizer outputs
+*.asan
+*.ubsan
+*.tsan
+*.log
+
+# Editor/IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Test artifacts
+/tests/output/
+*.gcda
+*.gcno
+*.gcov
+coverage/
+
+# Generated docs
+/docs/html/
+/docs/latex/
+
+# Dependency files
+*.d
+
+# Archives
+*.tar
+*.tar.gz
+*.zip
+
+# Temporary files
+*.tmp
+*.temp
+/tmp/
