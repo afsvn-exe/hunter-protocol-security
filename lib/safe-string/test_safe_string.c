@@ -84,7 +84,7 @@ static void test_ss_copy_truncation(void) {
     
     char dest[4]; // Only fits "hel" + NUL
     ssize_t result = ss_copy(dest, sizeof(dest), "hello");
-    
+    (void)result;     
     // TODO: What should result be for truncation?
     // ASSERT_EQ(result, ???, "should indicate truncation");
     ASSERT_STR_EQ(dest, "hel", "should truncate correctly");
@@ -136,7 +136,7 @@ static void test_ss_copy_size_one(void) {
     
     char dest[1];
     ssize_t result = ss_copy(dest, 1, "hello");
-    
+    (void)result;
     // With size 1, can only fit NUL
     ASSERT_STR_EQ(dest, "", "should be empty");
     // TODO: Should this indicate truncation?
