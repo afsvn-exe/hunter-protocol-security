@@ -186,6 +186,38 @@ static void test_ss_length_basic(void) {
  * - maxlen = 0
  */
 
+static void test_ss_length_exceeds_max(void){
+    TEST(ss_length_exceeds_max);
+
+    ssize_t result = ss_length("helloworld", 5);
+    ASSERT_EQ(result, 5, "should return maxlen when string is longer");
+    PASS(); 
+}
+
+static void test_ss_length_empty(void){
+    TEST(ss_length_empty); 
+
+    ssize_t result = ss_length("", 100);
+    ASSERT_EQ(result, 0, "empty string has length 0");
+    PASS();
+}
+
+static void test_ss_length_null(void){
+    TEST(ss_length_null);
+
+    ssize_t result = ss_length(NULL, 100);
+    ASSERT_EQ(result, SS_ENULL, "should return SS_ENULL for NULL");
+    PASS(); 
+}
+
+static void test_ss_length_zero_max(void){
+    TEST(ss_length_zero_max);
+
+    size_t result = ss_length("hello", 0);
+    ASSERT_EQ(result, 0, "should return 0 when maxlen is 0");
+    PASS();
+}
+
 /* ============================================================
  * ss_format tests - TODO: Add your tests
  * ============================================================ */
@@ -244,6 +276,10 @@ int main(void) {
     
     printf("\nss_length:\n");
     test_ss_length_basic();
+    test_ss_length_exceeds_max();
+    test_ss_length_empty();
+    test_ss_length_null();
+    test_ss_length_zero_max();
     
     printf("\nss_format:\n");
     test_ss_format_basic();

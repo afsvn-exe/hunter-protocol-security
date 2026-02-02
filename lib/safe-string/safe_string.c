@@ -61,13 +61,15 @@ ssize_t ss_concat(char *dest, size_t destsize, const char *src) {
 
 ssize_t ss_length(const char *str, size_t maxlen) {
     // TODO: Validate input
+    if(str == NULL){
+    	return SS_ENULL; 
+    } 
     
-    // TODO: Count characters up to NUL or maxlen
-    //   - What if there's no NUL within maxlen?
-    
-    (void)str;
-    (void)maxlen;
-    return SS_ENULL; // Placeholder
+    size_t count = 0; 
+    while(count < maxlen && str[count] != '\0'){
+    	count++; 
+    }
+    return count;
 }
 
 ssize_t ss_format(char *dest, size_t destsize, const char *fmt, ...) {
