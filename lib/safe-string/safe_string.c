@@ -17,27 +17,24 @@
 #include <stdio.h>
 
 ssize_t ss_copy(char *dest, size_t destsize, const char *src) {
-    // TODO: Validate inputs
-    //   - What if dest is NULL?
-    //   - What if src is NULL?
-    //   - What if destsize is 0?
-    
-    // TODO: Copy characters with bounds checking
-    //   - How many characters can we safely copy?
-    //   - When do we stop?
-    
-    // TODO: Ensure NUL termination
-    //   - Where does the NUL go?
-    //   - Is this always possible?
-    
-    // TODO: Detect and report truncation
-    //   - How do we know if truncation occurred?
-    //   - What return value indicates truncation?
-    
-    (void)dest;     // Remove when implemented
-    (void)destsize; // Remove when implemented
-    (void)src;      // Remove when implemented
-    return SS_ENULL; // Placeholder
+    if(dest == NULL || src == NULL){
+	    return SS_ENULL; 
+    }  
+    if(destsize == 0){
+    	    return SS_ESIZE; 
+    }
+
+    size_t i = 0; 
+    while(i < destsize - 1 && src[i] != '\0'){
+	    dest[i] = src[i]; 
+	    i++;
+    } 
+    dest[i] = '\0'; 
+  
+    if(src[i] != '\0'){
+	    return SS_ETRUNC; 
+    }
+    return i; 
 }
 
 ssize_t ss_concat(char *dest, size_t destsize, const char *src) {
